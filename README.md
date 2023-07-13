@@ -28,6 +28,47 @@ This project is a Driving Knowledge Test Website built using Visual Studio. It i
 - Reports: The `reports.aspx` page allows users to generate reports and view test-related data.
 - Logout: The `logout.aspx` page allows users to log out of the website.
 
+## Driving Knowledge Test Database Tables Relationships
+
+The driving knowledge test web application consists of five tables that are interconnected through primary and foreign keys. Here's an overview of the relationships between these tables:
+
+1. Users Table:
+   - Primary Key: ID
+   - This table stores information about users, including their personal details.
+   - It is referenced by other tables through foreign key relationships.
+
+2. TestTypeMaster Table:
+   - Primary Key: ID
+   - This table holds the different types of tests available for the driving knowledge test.
+   - It is referenced by the TestTypeXUsers and UserTest tables through foreign key relationships.
+
+3. TestTypeXUsers Table:
+   - Primary Key: ID
+   - Foreign Keys:
+     - TestTypeID references TestTypeMaster(ID)
+     - UserID references Users(ID)
+   - This table establishes the relationship between the TestTypeMaster and Users tables.
+   - It associates users with the specific test types they have access to.
+
+4. UserTest Table:
+   - Primary Key: ID
+   - Foreign Keys:
+     - TestTypeID references TestTypeMaster(ID)
+     - UserID references Users(ID)
+     - QuestionID references TestMaster(ID)
+   - This table represents the tests taken by users.
+   - It stores information about the user's test results, including the selected answers.
+
+5. TestMaster Table:
+   - Primary Key: ID
+   - Foreign Key: TestTypeID references TestTypeMaster(ID)
+   - This table contains the questions and answers for each test.
+   - It is associated with a specific test type defined in the TestTypeMaster table.
+
+The relationships between these tables ensure the integrity and consistency of the driving knowledge test web application's data. The primary keys uniquely identify each record in a table, while the foreign keys establish connections between related tables.
+
+By understanding these relationships and keys, you can effectively design and query the database to support the functionality of the driving knowledge test web application.
+
 ## Getting Started
 
 1. Clone or download the project files to your local machine.
